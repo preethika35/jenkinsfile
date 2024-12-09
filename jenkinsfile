@@ -1,0 +1,47 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building...'
+                // Add your build steps here
+                sh 'echo "Compiling code..."'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing...'
+                // Add your test steps here
+                sh 'echo "Running tests..."'
+            }
+        }
+        stage('Code Analysis') {
+            steps {
+                echo 'Analyzing Code...'
+                // Add your code analysis steps here
+                sh 'echo "Analyzing code for quality..."'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying...'
+                // Add your deployment steps here
+                sh 'echo "Deploying application..."'
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Cleaning up...'
+            cleanWs()
+        }
+        success {
+            echo 'Pipeline succeeded!'
+        }
+        failure {
+            echo 'Pipeline failed!'
+        }
+    }
+}
